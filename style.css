@@ -1,0 +1,68 @@
+/* Basic palette */
+:root{
+  --bg:#f7f7fb;
+  --card:#ffffff;
+  --ink:#222;
+  --muted:#6b7280;
+  --brand:#116b59;
+  --brand-2:#1c9c81;
+  --ring:#dbeafe;
+  --line:#e5e7eb;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+}
+
+.container{max-width:900px; margin:0 auto; padding:0 16px}
+
+/* Header */
+header{
+  position:sticky; top:0; z-index:10;
+  background:var(--card);
+  border-bottom:1px solid var(--line);
+}
+header .container{display:flex; align-items:center; gap:16px; padding:14px 0}
+header h1{font-size:22px; margin:0}
+nav{margin-left:auto; display:flex; gap:14px}
+nav a{color:var(--muted); text-decoration:none; font-weight:600}
+nav a:hover{color:var(--brand)}
+
+/* Sections */
+main section{margin:28px 0; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px}
+h2{margin:0 0 12px 0; font-size:20px}
+
+.bullets{margin:8px 0 0 18px}
+.bullets li{margin:6px 0}
+
+/* Buttons */
+.btn{
+  display:inline-block; text-decoration:none;
+  background:var(--brand); color:#fff;
+  padding:10px 14px; border-radius:10px; font-weight:700;
+}
+.btn:hover{background:var(--brand-2)}
+.cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+
+/* Events grid + cards */
+.events-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap:12px;
+}
+.event{
+  background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.event h3{margin:0; font-size:18px}
+.event .meta{color:var(--muted); font-size:14px}
+.event .spacer{flex:1 1 auto}
+
+/* Footer */
+footer{margin:40px 0 20px; color:var(--muted)}
+footer a{color:inherit}
