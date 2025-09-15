@@ -1,61 +1,60 @@
-/* --- Simple static data for now --- */
-const EVENTS = [
-  {
-    title: "Great Falls sunrise hike",
-    date: "Sat, Sep 21",
-    time: "6:15 AM",
-    location: "Great Falls Park (VA)",
-    rsvp: "https://forms.gle/your-rsvp-1"
-  },
-  {
-    title: "Burke Lake nature walk",
-    date: "Sun, Sep 29",
-    time: "10:00 AM",
-    location: "Burke Lake Park",
-    rsvp: "https://forms.gle/your-rsvp-2"
-  }
-];
+/* Minimal, beginner-friendly styles */
+:root { --green:#1f5130; --bg:#f7f7f7; }
 
-const list = document.getElementById("eventsList");
+* { box-sizing: border-box; }
 
-function render(events){
-  if (!events || !events.length){
-    list.innerHTML = `<p class="meta">No upcoming events yet.</p>`;
-    return;
-  }
-  list.innerHTML = events.map(e => `
-    <article class="event">
-      <h3>${e.title}</h3>
-      <div class="meta">${e.date} • ${e.time}</div>
-      <div class="meta">${e.location}</div>
-      <div class="spacer"></div>
-      <a class="btn" href="${e.rsvp}" target="_blank" rel="noopener">RSVP</a>
-    </article>
-  `).join("");
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: #222;
 }
 
-render(EVENTS);
+header {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 14px 16px;
+  position: sticky;
+  top: 0;
+}
 
-/* --- Optional: swap to Google Sheets later ---
-   1) Put events in a Sheet with header:
-      publish,title,date,time,location,rsvp
-   2) File → Share → Anyone with link (viewer)
-   3) Use the CSV "gviz" URL below
-*/
-// function loadFromSheet() {
-//   const SHEET_ID = "PASTE_SHEET_ID";
-//   const SHEET_NAME = "Events";
-//   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
-//   fetch(url)
-//     .then(r => r.text())
-//     .then(csv => {
-//       const rows = csv.trim().split(/\r?\n/).slice(1);
-//       const data = rows.map(line => {
-//         const [publish,title,date,time,location,rsvp] = line.split(",");
-//         return { publish, title, date, time, location, rsvp };
-//       }).filter(x => (x.publish||"").toLowerCase().trim() === "true");
-//       render(data);
-//     })
-//     .catch(() => { list.innerHTML = `<p class="meta">Could not load events.</p>`; });
-// }
-// loadFromSheet();
+header h1 { margin: 0; font-size: 20px; }
+
+.container { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+section { padding: 28px 0; }
+
+h2 { margin: 0 0 10px; font-size: 22px; }
+
+.event {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 10px 0;
+}
+
+.event h3 { margin: 0 0 6px; font-size: 18px; }
+
+.btn {
+  display: inline-block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--green);
+  color: #fff;
+  text-decoration: none;
+  transition: transform .02s ease-in-out, opacity .15s;
+}
+
+.btn:hover { opacity: .9; transform: translateY(-1px); }
+
+.btn-alt { background:#2d6a3c; margin-left: 8px; }
+
+.about {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+footer { text-align: center; color: #666; padding: 24px 0 40px; }
