@@ -1,47 +1,60 @@
-// ====== SUPER TINY POC ======
-// For now, events come from a small JS array.
-// (Later can be swapped to a Google Sheet fetch.)
-const EVENTS = [
-  { title: "Sunrise Hike - Great Falls", date:"2025-09-14", time:"6:00–8:30 AM", location:"Great Falls Park VA", rsvp:"#"},
-  { title: "Shenandoah Day Hike - Little Stony Man", date:"2025-09-21", time:"9:00 AM–3:00 PM", location:"Shenandoah NP", rsvp:"#"},
-];
+/* Minimal, beginner-friendly styles */
+:root { --green:#1f5130; --bg:#f7f7f7; }
 
-const list = document.getElementById('eventsList');
-if (!EVENTS.length) {
-  list.textContent = "No upcoming events yet.";
-} else {
-  list.innerHTML = EVENTS.map(e => `
-    <article class="event">
-      <h3>${e.title}</h3>
-      <div>${e.date} • ${e.time}</div>
-      <div>${e.location}</div>
-      <a class="btn" href="${e.rsvp}" target="_blank" rel="noopener">RSVP</a>
-    </article>
-  `).join("");
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: #222;
 }
 
-// ===== Optional: Sheet hookup later =====
-// Replace the block above with this if you want live data:
-/*
-const SHEET_ID = "PASTE_SHEET_ID";
-const SHEET_NAME = "Events";
-const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
-fetch(URL).then(r=>r.text()).then(csv=>{
-  const lines = csv.trim().split(/\r?\n/).slice(1); // skip header
-  list.innerHTML = "";
-  lines.forEach(line=>{
-    const [publish,title,date,time,location,difficulty,rsvp] = line.split(",");
-    if ((publish||"").trim().toLowerCase() !== "true") return;
-    list.insertAdjacentHTML("beforeend", `
-      <article class="event">
-        <h3>${(title||"").trim()}</h3>
-        <div>${(date||"").trim()} • ${(time||"").trim()}</div>
-        <div>${(location||"").trim()}</div>
-        <a class="btn" href="${(rsvp||"#").trim()}" target="_blank" rel="noopener">RSVP</a>
-      </article>`);
-  });
-  if (!list.innerHTML) list.textContent = "No upcoming events yet.";
-}).catch(()=>{
-  list.textContent="Could not load events.";
-});
-*/
+header {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 14px 16px;
+  position: sticky;
+  top: 0;
+}
+
+header h1 { margin: 0; font-size: 20px; }
+
+.container { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+section { padding: 28px 0; }
+
+h2 { margin: 0 0 10px; font-size: 22px; }
+
+.event {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 10px 0;
+}
+
+.event h3 { margin: 0 0 6px; font-size: 18px; }
+
+.btn {
+  display: inline-block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--green);
+  color: #fff;
+  text-decoration: none;
+  transition: transform .02s ease-in-out, opacity .15s;
+}
+
+.btn:hover { opacity: .9; transform: translateY(-1px); }
+
+.btn-alt { background:#2d6a3c; margin-left: 8px; }
+
+.about {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+footer { text-align: center; color: #666; padding: 24px 0 40px; }
